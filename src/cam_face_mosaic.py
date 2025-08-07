@@ -4,7 +4,7 @@ import cv2
 face_cascade = cv2.CascadeClassifier('../data/haarcascade_frontalface_default.xml')
 
 # 모자이크 비율
-rate = 1
+rate = 10
 
 # 캠 열기 (0번은 기본 웹캠)
 cap = cv2.VideoCapture(0)
