@@ -4,13 +4,13 @@ import cv2
 face_cascade = cv2.CascadeClassifier('../data/haarcascade_frontalface_default.xml')
 
 # 모자이크 비율
-rate = 15
+rate = 
 
 # 캠 열기 (0번은 기본 웹캠)
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
-    print("카메라를 열 수 없습니다.")
+    pass
     exit()
 
 while True:
