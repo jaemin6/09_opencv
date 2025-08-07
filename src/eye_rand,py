@@ -1,0 +1,45 @@
+import cv2
+import dlib
+import numpy as np
+
+# 얼굴 랜드마크 예측기 모델 경로
+predictor_path = './shape_predictor_68_face_landmarks.dat'
+
+# dlib 검출기 및 예측기 로드
+detector = dlib.get_frontal_face_detector()
+predictor = dlib.shape_predictor(predictor_path)
+
+# 웹캠 열기
+cap = cv2.VideoCapture(0)
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    # 이미지를 흑백으로 변환
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # 얼굴 검출
+    faces = detector(gray)
+
+    for face in faces:
+        # 얼굴 랜드마크 예측
+        shape = predictor(gray, face)
+
+        # 랜드마크를 numpy 배열로 변환
+        landmarks = np.array([(shape.part(i).x, shape.part(i).y) for i in range(68)])
+
+        # 랜드마크 중 눈에 해당하는 부분 추출
+        left_eye_landmarks = landmarks[36:42]
+        right_eye_landmarks = landmarks[42:48]
+
+        # 추출된 눈 랜드마크를 활용하여 추가 작업 (예: 눈 깜빡임 감지, 시선 추적 등) 수행
+
+
+    
+    if cv2.waitKey(1) == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
