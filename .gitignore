@@ -1,4 +1,4 @@
 /data/*xml
 src/faces/*
 src/*xml/
-src/*.dat/
+src/*.data/
